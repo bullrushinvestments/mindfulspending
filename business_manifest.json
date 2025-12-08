@@ -1,0 +1,37 @@
+{
+  "name": "MindfulSpending",
+  "type": "ecommerce",
+  "description": "MindfulSpending is an AI-powered financial wellness platform that combines personal finance tracking with mental health support to help users manage their money better while reducing stress and anxiety related to finances.",
+  "generated_at": "2025-12-06T20:11:04.510827",
+  "components": [
+    "spec",
+    "build",
+    "deploy",
+    "spec_requirements",
+    "spec_architecture",
+    "build_code",
+    "build_test"
+  ],
+  "files_written": [
+    "businesses\\production_test\\ecommerce\\mindfulspending\\src\\components\\component.tsx",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\__tests__\\component.test.tsx",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\vercel.json",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\src\\components\\requirements.tsx",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\__tests__\\architecture.test.tsx",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\vercel.json",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\src\\components\\test.tsx",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\src\\app\\layout.tsx",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\src\\app\\globals.css",
+    "businesses\\production_test\\ecommerce\\mindfulspending\\src\\app\\page.tsx"
+  ],
+  "tasks_completed": 7,
+  "tasks_failed": 0,
+  "ap2_estimated_cost": 45.2,
+  "ap2_estimated_tokens": 19500,
+  "ap2_generation_approval": null,
+  "infrastructure_approvals": {
+    "analytics": null,
+    "database": null,
+    "storage": null
+  }
+}

@@ -1,0 +1,177 @@
+interface BuildCommand {
+  command: string;
+  output?: string;
+}
+
+interface EnvTemplate {
+  [key: string]: string;
+}
+
+interface HeaderRule {
+  source: string;
+  headers: Array<{ key: string; value: string }>;
+}
+
+interface CacheStrategy {
+  ignoreUrlParametersMatching: Array<string>;
+  browserCacheTtl: number;
+  edgeCacheTtl: number;
+  cacheEverything?: boolean;
+}
+
+interface FrameworkSettings {
+  vercel?: { [key: string]: any };
+  netlify?: { [key: string]: any };
+}
+
+interface DeployConfig {
+  build: BuildCommand;
+  env: EnvTemplate;
+  headers: Array<HeaderRule>;
+  securityHeaders: Array<{ source: string; header: { key: string; value: string }[] }>;
+  cacheStrategies: CacheStrategy[];
+  frameworkSettings?: FrameworkSettings;
+}
+
+export const deployConfig: DeployConfig = {
+  build: {
+    command: "next build",
+    output: ".next"
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_STRIPE_KEY: process.env.NEXT_PUBLIC_STRIPE_KEY
+  },
+  headers: [
+    {
+      source: "/(.*)",
+      headers: [
+        { key: "Access-Control-Allow-Origin", value: "*" },
+        { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+      ]
+    }
+  ],
+  securityHeaders: [
+    {
+      source: "/(.*)",
+      header: [
+        { key: "strict-transport-security", value: "max-age=31536000; includeSubDomains; preload" },
+        { key: "x-content-type-options", value: "nosniff" },
+        { key: "x-frame-options", value: "DENY" },
+        { key: "x-xss-protection", value: "1; mode=block" }
+      ]
+    }
+  ],
+  cacheStrategies: [
+    {
+      ignoreUrlParametersMatching: [".*"],
+      browserCacheTtl: 0,
+      edgeCacheTtl: 0
+    },
+    {
+      source: "/api/:path*",
+      headers: [{ key: "cache-control", value: "s-maxage=1, stale-while-revalidate" }]
+    }
+  ],
+  frameworkSettings: {
+    vercel: {
+      buildCommand: "next build",
+      startCommand: "next start"
+    },
+    netlify: {
+      buildContext: { NODE_ENV: "production" },
+      functions: ".functions",
+      redirects: "./public/redirects.json"
+    }
+  }
+};
+
+interface BuildCommand {
+  command: string;
+  output?: string;
+}
+
+interface EnvTemplate {
+  [key: string]: string;
+}
+
+interface HeaderRule {
+  source: string;
+  headers: Array<{ key: string; value: string }>;
+}
+
+interface CacheStrategy {
+  ignoreUrlParametersMatching: Array<string>;
+  browserCacheTtl: number;
+  edgeCacheTtl: number;
+  cacheEverything?: boolean;
+}
+
+interface FrameworkSettings {
+  vercel?: { [key: string]: any };
+  netlify?: { [key: string]: any };
+}
+
+interface DeployConfig {
+  build: BuildCommand;
+  env: EnvTemplate;
+  headers: Array<HeaderRule>;
+  securityHeaders: Array<{ source: string; header: { key: string; value: string }[] }>;
+  cacheStrategies: CacheStrategy[];
+  frameworkSettings?: FrameworkSettings;
+}
+
+export const deployConfig: DeployConfig = {
+  build: {
+    command: "next build",
+    output: ".next"
+  },
+  env: {
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_STRIPE_KEY: process.env.NEXT_PUBLIC_STRIPE_KEY
+  },
+  headers: [
+    {
+      source: "/(.*)",
+      headers: [
+        { key: "Access-Control-Allow-Origin", value: "*" },
+        { key: "Access-Control-Allow-Methods", value: "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+      ]
+    }
+  ],
+  securityHeaders: [
+    {
+      source: "/(.*)",
+      header: [
+        { key: "strict-transport-security", value: "max-age=31536000; includeSubDomains; preload" },
+        { key: "x-content-type-options", value: "nosniff" },
+        { key: "x-frame-options", value: "DENY" },
+        { key: "x-xss-protection", value: "1; mode=block" }
+      ]
+    }
+  ],
+  cacheStrategies: [
+    {
+      ignoreUrlParametersMatching: [".*"],
+      browserCacheTtl: 0,
+      edgeCacheTtl: 0
+    },
+    {
+      source: "/api/:path*",
+      headers: [{ key: "cache-control", value: "s-maxage=1, stale-while-revalidate" }]
+    }
+  ],
+  frameworkSettings: {
+    vercel: {
+      buildCommand: "next build",
+      startCommand: "next start"
+    },
+    netlify: {
+      buildContext: { NODE_ENV: "production" },
+      functions: ".functions",
+      redirects: "./public/redirects.json"
+    }
+  }
+};
